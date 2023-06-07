@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="number"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group input[type="password"]:focus {
+      outline: none;
+      border-color: #555;
+    }
+    
+    .form-group .eye-icon {
+      position: absolute;
+      top: 16px;
+      right: 15px;
+      color: #999;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    
+    .form-group .eye-icon:hover {
+      color: #555;
+    }
+    
+    .form-group .eye-icon i {
+      font-size: 18px;
+    }
+    
+    .form-group small {
+      display: block;
+      margin-top: 5px;
+      color: #888;
+    }
+    
+    .checkout-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #333;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .checkout-button:hover {
+      background-color: #555;
+    }
+    
+    .thank-you {
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Checkout</h1>
+    <form id="checkout-form">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required>
+      </div>
+      <div class="form-group">
+        <label for="zip">ZIP Code:</label>
+        <input type="text" id="zip" name="zip" required>
+      </div>
+      <div class="form-group">
+        <label for="cardnumber">Card Number:</label>
+        <div style="position: relative;">
+          <input type="password" id="cardnumber" name="cardnumber" required>
+          <button class="eye-icon" id="eye-button" type="button"><i class="fas fa-eye"></i></button>
+        </div>
+        <small>Enter your card number without spaces or dashes.</small>
+      </div>
+      <div class="form-group">
+        <label for="expiry">Expiry Date:</label>
+        <input type="text" id="expiry" name="expiry" required>
+        <small>Enter the expiry date in the format MM/YY.</small>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+        <small>3 or 4-digit security code on the back of your card.</small>
+      </div>
+      <button class="checkout-button" type="submit">Complete Purchase</button>
+    </form>
+    <div id="thank-you-message" class="thank-you" style="display: none;">Thank you for your purchase!</div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script>
+    const eyeButton = document.getElementById('eye-button');
+    const cardNumberInput = document.getElementById('cardnumber');
+    const checkoutForm = document.getElementById('checkout-form');
+    const thankYouMessage = document.getElementById('thank-you-message');
+
+    eyeButton.addEventListener('click', function() {
+      if (cardNumberInput.type === 'password') {
+        cardNumberInput.type = 'text';
+        eyeButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      } else {
+        cardNumberInput.type = 'password';
+        eyeButton.innerHTML = '<i class="fas fa-eye"></i>';
+      }
+    });
+
+    checkoutForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      setTimeout(function() {
+        checkoutForm.reset();
+        thankYouMessage.style.display = 'block';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

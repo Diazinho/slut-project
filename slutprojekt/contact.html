@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      color: #333;
+    }
+    
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #666;
+    }
+    
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #8e44ad;
+    }
+    
+    .contact-form button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8e44ad;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .contact-form button:hover {
+      background-color: #6c3483;
+    }
+    
+    .contact-form .success-message {
+      color: #27ae60;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    
+    .contact-form .error-message {
+      color: #c0392b;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Contact Us</h1>
+  
+  <div class="contact-form">
+    <form action="submit_form.php" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      
+      <button type="submit">Submit</button>
+      
+      <div class="success-message" style="display: none;">Thank you! Your message has been sent.</div>
+      <div class="error-message" style="display: none;">Oops! Something went wrong. Please try again.</div>
+    </form>
+  </div>
+
+  <script>
+
+    var form = document.querySelector('.contact-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      var successMessage = form.querySelector('.success-message');
+      var errorMessage = form.querySelector('.error-message');
+      var isFormValid = Math.random() < 0.8; 
+      if (isFormValid) {
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        form.reset();
+      } else {
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
